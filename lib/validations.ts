@@ -17,24 +17,13 @@ export const postSchema = z.object({
 
   content: z.string().min(1, "Content is required"),
 
-  excerpt: z
-    .string()
-    .max(160, "Excerpt must be 160 characters or less")
-    .optional()
-    .default(""),
+  excerpt: z.string().max(160, "Excerpt must be 160 characters or less"),
 
-  coverImage: z.string().url("Must be a valid URL").nullable().default(null),
+  coverImage: z.string().url("Must be a valid URL").nullable(),
 
-  tags: z.array(z.string().min(1)).default([]),
+  tags: z.array(z.string().min(1)),
 
   status: z.enum(["draft", "published"]),
 });
 
 export type PostFormValues = z.infer<typeof postSchema>;
-
-export const loginSchema = z.object({
-  email: z.string().email("Enter a valid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-});
-
-export type LoginFormValues = z.infer<typeof loginSchema>;
