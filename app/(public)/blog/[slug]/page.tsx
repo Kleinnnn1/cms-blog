@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { use } from "react";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -54,7 +55,17 @@ export default function BlogPostPage({
         {post.excerpt && (
           <p className="text-lg text-neutral-500">{post.excerpt}</p>
         )}
-        <p className="text-sm text-neutral-400">{formatDate(post.createdAt)}</p>
+        <p className="text-sm text-neutral-400">
+          By{" "}
+          <Link
+            href={`/about/${post.authorId}`}
+            className="font-medium text-neutral-600 hover:text-blue-600 hover:underline"
+          >
+            {post.authorName}
+          </Link>
+          {" · "}
+          {formatDate(post.createdAt)}
+        </p>
         {post.coverImage && (
           <img
             src={post.coverImage}

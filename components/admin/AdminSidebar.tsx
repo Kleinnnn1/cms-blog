@@ -2,25 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, PenSquare } from "lucide-react";
+import { LayoutDashboard, FileText, PenSquare, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 const NAV_ITEMS = [
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Posts",
-    href: "/posts",
-    icon: FileText,
-  },
-  {
-    label: "New Post",
-    href: "/posts/new",
-    icon: PenSquare,
-  },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Posts", href: "/posts", icon: FileText },
+  { label: "New Post", href: "/posts/new", icon: PenSquare },
+  { label: "Profile", href: "/profile", icon: User },
 ] as const;
 
 export function AdminSidebar() {

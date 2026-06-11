@@ -17,16 +17,15 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kenneth's Blog",
-    template: "%s | Kenneth's Blog",
+    default: "DevNotes",
+    template: "%s | DevNotes",
   },
   description:
     "Thoughts on software development, tech, and everything in between.",
-  authors: [{ name: "Kenneth Jhun Balino" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Kenneth's Blog",
+    siteName: "DevNotes",
   },
 };
 

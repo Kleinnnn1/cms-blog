@@ -4,28 +4,21 @@ import { useState, useMemo } from "react";
 import { PostCard } from "@/components/blog/PostCard";
 import { TagFilter } from "@/components/blog/TagFilter";
 import { Spinner } from "@/components/ui/Spinner";
-import { usePosts } from "@/hooks/usePosts";
+import { usePublishedPosts } from "@/hooks/usePublishedPosts";
 
 export default function BlogPage() {
-  const { posts, loading, error } = usePosts();
+  const { posts, loading, error } = usePublishedPosts();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const published = useMemo(
-    () => posts.filter((p) => p.status === "published"),
-    [posts],
-  );
-
   const allTags = useMemo(
-    () => [...new Set(published.flatMap((p) => p.tags))].sort(),
-    [published],
+    () => [...new Set(posts.flatMap((p) => p.tags))].sort(),
+    [posts],
   );
 
   const filtered = useMemo(
     () =>
-      selectedTag
-        ? published.filter((p) => p.tags.includes(selectedTag))
-        : published,
-    [published, selectedTag],
+      selectedTag ? posts.filter((p) => p.tags.includes(selectedTag)) : posts,
+    [posts, selectedTag],
   );
 
   return (

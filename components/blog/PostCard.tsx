@@ -8,8 +8,8 @@ interface PostCardProps {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <article className="group border-b border-neutral-200 py-8 last:border-0">
-      <Link href={`/blog/${post.slug}`} className="block space-y-3">
+    <article className="group relative border-b border-neutral-200 py-8 last:border-0">
+      <div className="space-y-3">
         {/* Cover image */}
         {post.coverImage && (
           <div className="overflow-hidden rounded-lg">
@@ -37,7 +37,10 @@ export function PostCard({ post }: PostCardProps) {
 
         {/* Title */}
         <h2 className="font-display text-xl font-bold text-neutral-900 transition-colors group-hover:text-blue-600">
-          {post.title}
+          <Link href={`/blog/${post.slug}`} className="static">
+            <span className="absolute inset-0" aria-hidden="true" />
+            {post.title}
+          </Link>
         </h2>
 
         {/* Excerpt */}
@@ -47,9 +50,18 @@ export function PostCard({ post }: PostCardProps) {
           </p>
         )}
 
-        {/* Date */}
-        <p className="text-xs text-neutral-400">{formatDate(post.createdAt)}</p>
-      </Link>
+        {/* Author + Date */}
+        <p className="text-xs text-neutral-400">
+          <Link
+            href={`/about/${post.authorId}`}
+            className="relative z-10 hover:text-blue-600 hover:underline"
+          >
+            {post.authorName}
+          </Link>
+          {" · "}
+          {formatDate(post.createdAt)}
+        </p>
+      </div>
     </article>
   );
 }

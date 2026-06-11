@@ -2,12 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SITE_NAME } from "@/constant";
 
-const NAV_LINKS = [
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-] as const;
+const NAV_LINKS = [{ label: "Blog", href: "/blog" }] as const;
 
 export function Navbar() {
   const pathname = usePathname();
@@ -22,8 +18,7 @@ export function Navbar() {
           href="/"
           className="font-display text-xl font-bold tracking-tight text-neutral-900 transition-opacity hover:opacity-70"
         >
-          {SITE_NAME}
-          <span className="text-blue-600">.</span>
+          DevNotes<span className="text-blue-600">.</span>
         </Link>
 
         <ul className="flex items-center gap-6" role="list">

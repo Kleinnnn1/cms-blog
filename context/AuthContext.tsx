@@ -11,6 +11,7 @@ import {
 import type { User } from "firebase/auth";
 import { onAuthStateChanged, signOut as firebaseSignOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
+import { getUserProfile, upsertUserProfile } from "@/lib/firebase/firestore";
 
 interface AuthContextValue {
   user: User | null;
@@ -25,7 +26,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        // Ensure a user profile document exists
+        const existing = await getUserProfile(firebaseUser.uid);
+        if (!existing) {
+          await upsertUserProfile(firebaseUser.uid, {
+            displayName:
+              firebaseUser.displayName ??
+              firebaseUser.email?.split("@")[0] ??
+              "Anonymous",
+            email: firebaseUser.email ?? "",
+            bio: "",
+          });
+        }
+      }
       setUser(firebaseUser);
       setLoading(false);
     });
