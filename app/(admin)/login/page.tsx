@@ -60,7 +60,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="font-display text-3xl font-bold text-neutral-900">
-            CMS<span className="text-blue-600">.</span>
+            TopicHub<span className="text-blue-600">.</span>
           </h1>
           <p className="mt-2 text-sm text-neutral-500">
             Sign in to manage your blog

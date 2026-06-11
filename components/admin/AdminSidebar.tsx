@@ -24,7 +24,7 @@ export function AdminSidebar() {
           href="/dashboard"
           className="font-display text-lg font-bold text-neutral-900"
         >
-          CMS<span className="text-blue-600">.</span>
+          TopicHub<span className="text-blue-600">.</span>
         </Link>
       </div>
 
